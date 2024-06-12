@@ -1,100 +1,77 @@
-## Prerequisites
+### 1. Install Necessary Packages
 
-- Python 3.x
-- pip (Python package installer)
-
-## Setup Instructions
-
-### Step 1: Update and Upgrade the System
-
+First, ensure your system is updated and necessary packages are installed.
 
 ```bash
 sudo apt update
 sudo apt upgrade -y
+sudo apt install git python3 python3-pip python3-venv screen -y
 ```
 
-### Step 2: Install Python and pip
+### 2. Clone the Repository
+
+Clone your GitHub repository containing the script.
 
 ```bash
-sudo apt install python3 python3-pip -y
+git clone https://github.com/0xGery/Malicious.git
+cd Malicious/testpy
 ```
 
-### Step 3: Install virtualenv
+### 3. Set Up Virtual Environment
+
+Create a virtual environment and activate it.
 
 ```bash
-pip3 install virtualenv
-```
-
-### Step 4: Clone the Repository
-
-```bash
-git clone https://github.com/0xGery/Malicious/blob/main/testpy.git
-cd testpy
-```
-
-### Step 5: Set Up the Virtual Environment
-
-```bash
-virtualenv venv
+python3 -m venv venv
 source venv/bin/activate
 ```
 
-### Step 6: Install Required Python Packages
+### 4. Install Dependencies
+
+Install the necessary Python packages using `pip`.
 
 ```bash
-pip install -r requirements.txt
+pip install web3 eth-account python-dotenv
 ```
 
-### Step 7: Create a `.env` File
+### 5. Set Up Environment Variables
 
-Create a `.env` file in the project root directory and add your private key:
-
-```plaintext
-PRIVATE_KEY=your_private_key_here
-```
-
-### Step 8: Install `screen`
+Create a `.env` file in the same directory as your script and add your private key.
 
 ```bash
-sudo apt install screen -y
+echo "PRIVATE_KEY=your_private_key_here" > .env
 ```
 
-### Step 9: Run the Script Inside a `screen` Session
+Replace `your_private_key_here` with your actual private key.
 
-1. Start a new `screen` session:
+### 6. Start a `screen` Session
 
-    ```bash
-    screen -S taiko-tx
-    ```
+Start a `screen` session to run your script.
 
-2. Run the script:
+```bash
+screen -S taiko-bot
+```
 
-    ```bash
-    python taiko.py
-    ```
+### 7. Run the Script
 
-3. To detach from the `screen` session and leave the script running:
+Within the `screen` session, run your Python script.
 
-    ```bash
-    Ctrl + A, then D
-    ```
+```bash
+python taiko.py
+```
 
-4. To reattach to the `screen` session later:
+### 8. Detach from `screen` Session
 
-    ```bash
-    screen -r taiko-tx
-    ```
+Detach from the `screen` session without stopping the script.
 
-### Script Overview
+```bash
+Ctrl + A, then D
+```
 
-The script will run continuously, sending up to 5 transactions per day and resetting at 1 AM UTC.
+### 9. Reattach to `screen` Session (Optional)
 
-## Troubleshooting
+If you want to reattach to the `screen` session later, use:
 
-If you encounter any issues, check the following:
-
-1. Ensure you have correctly set up your `.env` file with the proper private key.
-2. Verify that you have sufficient funds in your wallet.
-3. Make sure the script has the necessary permissions to execute.
-
-Feel free to contribute or raise issues on the repository if you find any bugs or have suggestions for improvements.
+```bash
+screen -r taiko-bot
+```
